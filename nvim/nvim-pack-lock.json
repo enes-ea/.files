@@ -1,7 +1,7 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "473c928d8b9b5b3f638cd085a01899972cf205c6",
+      "rev": "8219b58f1c11a2fb1644d3c7116c509fa8348ec0",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "blink.lib": {
@@ -21,7 +21,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "gitsigns.nvim": {
-      "rev": "8d79f2410c76e62b92e51c28c82e28c1c5a3daeb",
+      "rev": "aa6cc2d7addb288cfd79a05ac257695d5ff61deb",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "harpoon": {
@@ -42,7 +42,7 @@
       "src": "https://github.com/jakewvincent/mkdnflow.nvim"
     },
     "nvim-lspconfig": {
-      "rev": "ac9d2f7c4757db6320cab6697fe73e5e8adb2457",
+      "rev": "6d27c288ff951e1e94cb5f91c800adeddf0dc0c2",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-spectre": {
@@ -50,7 +50,7 @@
       "src": "https://github.com/nvim-pack/nvim-spectre"
     },
     "nvim-web-devicons": {
-      "rev": "5f032a85be210cd1c6ac98861eb3b187ff3bd5eb",
+      "rev": "58447c1fca354bbf184425e4a8d01deecbd6f3c4",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "plenary.nvim": {
@@ -58,11 +58,11 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "render-markdown.nvim": {
-      "rev": "640a3ec6d538bad17c328be373c7cad0293d9589",
+      "rev": "8e8795368391036643b622875a6da6a51bcd33f4",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "smart-splits.nvim": {
-      "rev": "ec76708f1617ef9e2ac353357fe52d2c997a0f06",
+      "rev": "07dbad410256f755e69ffd31cb8d122bcd6b91f7",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
     },
     "snacks.nvim": {
@@ -70,7 +70,7 @@
       "src": "https://github.com/folke/snacks.nvim"
     },
     "tree-sitter-manager.nvim": {
-      "rev": "1425eacb78bfee34face0fe06a8384ac3c4d9c8e",
+      "rev": "d93782393d7d4b48ddbdbcb0fdff6f8cb8d7043a",
       "src": "https://github.com/romus204/tree-sitter-manager.nvim"
     },
     "trouble.nvim": {
