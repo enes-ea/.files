@@ -150,11 +150,6 @@
   },
   {
     "type": "file",
-    "src": "kernel/modprobed.db",
-    "dst": "modprobed.db"
-  },
-  {
-    "type": "file",
     "src": "npmrc",
     "dst": ".npmrc",
     "root": "home"
