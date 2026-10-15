@@ -1,5 +1,5 @@
 # Official packages (stripped of gaming/lib32)
-# Generated: 2026-09-19
+# Generated: 2026-10-15
 # Usage: pacman -S --needed - < pkgs-official.txt
 
 7zip
@@ -36,6 +36,7 @@ gnome-clocks
 gnome-keyring
 go
 gopass
+helium-browser-bin
 highlight
 imagemagick
 inter-font
@@ -46,7 +47,6 @@ just
 keychain
 kitty
 libnotify
-librewolf
 linux-cachyos-bore
 linux-cachyos-bore-headers
 linux-cachyos-bore-r8125
@@ -94,6 +94,7 @@ rust-bindgen
 rustup
 sassc
 sd
+shader-slang
 stylua
 swayidle
 swaylock
@@ -114,6 +115,7 @@ wget
 wl-clipboard
 words
 xdg-desktop-portal-wlr
+xorg-xlsclients
 yazi
 yt-dlp
 zathura-pdf-mupdf
