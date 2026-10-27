@@ -108,6 +108,28 @@ vim.lsp.enable("lua_ls")
 vim.lsp.enable("fish_lsp")
 vim.lsp.enable("marksman")
 
+-- Python: ruff for lint/fix, pyright for types. mypy stays the CI truth.
+
+vim.lsp.config("pyright", {
+    before_init = function(_, config)
+        local root = config.root_dir or vim.fn.getcwd()
+        local python = root .. "/.venv/bin/python"
+        if vim.uv.fs_stat(python) then config.settings.python.pythonPath = python end
+    end,
+    settings = {
+        python = {
+            analysis = {
+                typeCheckingMode = "standard",
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = "openFilesOnly",
+            },
+        },
+    },
+})
+vim.lsp.enable("pyright")
+vim.lsp.enable("ruff")
+
 -- snacks
 
 require("snacks").setup({
@@ -172,6 +194,10 @@ map("n", "<leader>su", function() Snacks.picker.undo() end, { desc = "Undo histo
 map("n", "<leader>sR", function() Snacks.picker.resume() end, { desc = "Resume picker" })
 map("n", "<leader>fk", function() Snacks.picker.keymaps() end, { desc = "Keymaps" })
 map("n", "<leader>fh", function() Snacks.picker.help() end, { desc = "Help pages" })
+map("n", "<leader>fp", function()
+    local root = vim.fs.root(0, "pyproject.toml") or vim.fn.getcwd()
+    Snacks.picker.files({ cwd = root .. "/planning", ignored = true })
+end, { desc = "Planning docs" })
 -- stylua: ignore end
 
 -- blink.cmp
@@ -275,15 +301,29 @@ require("tree-sitter-manager").setup({
 -- ============================================================================
 
 -- stylua: ignore start
+local ruff_root = require("conform.util").root_file({ "pyproject.toml", "ruff.toml", ".ruff.toml" })
+local function ruff_bin(_, ctx)
+    local root = ruff_root(nil, ctx)
+    if root then
+        local bin = root .. "/.venv/bin/ruff"
+        if vim.fn.executable(bin) == 1 then return bin end
+    end
+    return "ruff"
+end
+
 require("conform").setup({
     formatters_by_ft = {
         lua = { "stylua" },
         markdown = { "prettier" },
         fish = { "fish_indent" },
-        python = { "ruff" },
+        python = { "ruff_fix", "ruff_format" },
         json = { "prettier" },
         c = { "clang-format" },
         cpp = { "clang-format" },
+    },
+    formatters = {
+        ruff_fix = { command = ruff_bin },
+        ruff_format = { command = ruff_bin },
     },
     default_format_opts = {
         lsp_format = "fallback",
@@ -293,6 +333,28 @@ require("conform").setup({
 
 map("n", "<leader>f", function() require("conform").format() end, { desc = "Format buffer" })
 map("n", "<leader>w", function() require("conform").format() vim.cmd("w") end, { noremap = true, silent = true, desc = "Format and save" })
+-- stylua: ignore end
+
+-- ============================================================================
+-- PROJECT WORKFLOW
+-- ============================================================================
+
+-- stylua: ignore start
+map("n", "<leader>tm", function()
+    vim.cmd("compiler mypy")
+    vim.opt.makeprg = "uv run mypy --show-column-numbers src"
+    vim.cmd("make")
+end, { desc = "Typecheck (mypy)" })
+
+map("n", "<leader>tt", function()
+    vim.cmd("compiler pytest")
+    vim.opt.makeprg = "uv run pytest --tb=short --quiet"
+    vim.cmd("make")
+end, { desc = "Run tests" })
+
+map("n", "<leader>tc", function()
+    Snacks.terminal.open("just check", { cwd = vim.fn.getcwd() })
+end, { desc = "just check" })
 -- stylua: ignore end
 
 -- ============================================================================
@@ -411,6 +473,47 @@ map("n", "<leader><leader>Right", function() require("smart-splits").swap_buf_le
 -- stylua: ignore end
 
 -- ============================================================================
+-- LAZY PLUGINS
+-- ============================================================================
+
+-- Registered at startup with `load = false` so vim.pack manages them (and
+-- `UpdateAll` updates them), while plugin files load only on first use.
+local lazy_plugins = {
+    render_markdown = {
+        gh("MeanderingProgrammer/render-markdown.nvim"),
+    },
+    mkdnflow = {
+        gh("jakewvincent/mkdnflow.nvim"),
+    },
+    neogit = {
+        gh("NeogitOrg/neogit"),
+        gh("sindrets/diffview.nvim"),
+        gh("esmuellert/codediff.nvim"),
+        gh("m00qek/baleia.nvim"),
+    },
+}
+
+local lazy_specs = {}
+for _, group in pairs(lazy_plugins) do
+    vim.list_extend(lazy_specs, group)
+end
+vim.pack.add(lazy_specs, { load = false })
+
+local lazy_loaded = {}
+
+local function lazy_add(group)
+    if lazy_loaded[group] then return end
+    lazy_loaded[group] = true
+
+    local specs = lazy_plugins[group]
+    vim.pack.add(specs, { load = false })
+    for _, spec in ipairs(specs) do
+        local src = type(spec) == "table" and (spec.name or spec.src) or spec
+        vim.cmd.packadd(src:match("([^/]+)$"))
+    end
+end
+
+-- ============================================================================
 -- LAZY: render-markdown
 -- ============================================================================
 
@@ -421,7 +524,7 @@ do
         group = g,
         once = true,
         callback = function()
-            vim.pack.add({ gh("MeanderingProgrammer/render-markdown.nvim") })
+            lazy_add("render_markdown")
             require("render-markdown").setup({
                 latex = { enabled = false },
                 file_types = { "markdown", "copilot-chat" },
@@ -471,7 +574,7 @@ do
         group = g,
         once = true,
         callback = function()
-            vim.pack.add({ gh("jakewvincent/mkdnflow.nvim") })
+            lazy_add("mkdnflow")
             require("mkdnflow").setup({
                 perspective = {
                     priority = "root",
@@ -524,12 +627,7 @@ end
 -- ============================================================================
 
 map("n", "<leader>gg", function()
-    vim.pack.add({
-        gh("NeogitOrg/neogit"),
-        gh("sindrets/diffview.nvim"),
-        gh("esmuellert/codediff.nvim"),
-        gh("m00qek/baleia.nvim"),
-    })
+    lazy_add("neogit")
     require("neogit").setup({
         integrations = {
             snacks = true,
@@ -551,4 +649,9 @@ end, { desc = "Neogit" })
 -- UTILITY COMMAND: UpdateAll
 -- ============================================================================
 
-vim.api.nvim_create_user_command("UpdateAll", function() vim.pack.update() end, { desc = "Update all plugins" })
+vim.api.nvim_create_user_command("UpdateAll", function()
+    -- Re-register lazy plugins in case they were skipped at startup, then update
+    -- every plugin managed by vim.pack (eager and lazy).
+    vim.pack.add(lazy_specs, { load = false })
+    vim.pack.update()
+end, { desc = "Update all plugins" })
