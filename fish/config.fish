@@ -83,11 +83,9 @@ if status is-interactive
         zi $argv
     end
 
-    set -g async_prompt_functions _pure_prompt_git
     source ~/.config/fish/keybinds.fish
 
 end
-
 
 # Added by Antigravity CLI installer
 set -gx PATH "/home/enes/.local/bin" $PATH

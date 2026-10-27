@@ -1,4 +1,4 @@
-set --global pure_version 4.18.0  # For bug report and tag-after-merge workflow
+set --global pure_version 4.19.2  # For bug report and tag-after-merge workflow
 
 # Base colors
 _pure_set_default pure_color_primary blue
@@ -105,6 +105,11 @@ _pure_set_default pure_check_for_new_release false
 _pure_set_default pure_show_prefix_root_prompt false
 _pure_set_default pure_symbol_prefix_root_prompt "#"
 _pure_set_default pure_color_prefix_root_prompt pure_color_danger
+
+# Prefix prompt when in fish private mode
+_pure_set_default pure_show_prefix_private_prompt false
+_pure_set_default pure_symbol_prefix_private_prompt "!"
+_pure_set_default pure_color_prefix_private_prompt pure_color_danger
 
 # Compact mode
 _pure_set_default pure_enable_single_line_prompt false
