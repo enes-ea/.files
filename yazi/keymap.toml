@@ -16,3 +16,8 @@ desc = "Chmod on selected files"
 on   = "f"
 run  = "plugin jump-to-char"
 desc = "Jump to char"
+
+[[mgr.prepend_keymap]]
+on = "L"
+run = "plugin sshfs -- menu"
+desc = "Open SSHFS options"
