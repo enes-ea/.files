@@ -30,3 +30,18 @@ jq -c '.[]' "$LINKS" | while read -r entry; do
   ln -s "$target" "$link"
   printf '  %s \e[2m→\e[22m %s\n' "$src" "$link"
 done
+
+# Link per-machine profile overrides (selected by hostname, or DOT_PROFILE)
+PROFILE="${DOT_PROFILE:-$(uname -n)}"
+
+for pdir in "$ROOT"/*/profiles; do
+  [[ -d "$pdir" ]] || continue
+  app="$(basename "$(dirname "$pdir")")"
+  src="$pdir/$PROFILE.conf"
+  [[ -f "$src" ]] || src="$pdir/default.conf"
+  [[ -f "$src" ]] || continue
+  link="$ROOT/$app/machine.local.conf"
+  rm -f "$link"
+  ln -s "$src" "$link"
+  printf '  %s \e[2m→\e[22m %s\n' "${src#"$ROOT"/}" "$link"
+done
