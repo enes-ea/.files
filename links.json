@@ -36,8 +36,8 @@
   },
   {
     "type": "dir",
-    "src": "waybar",
-    "dst": "waybar"
+    "src": "mangobar",
+    "dst": "mangobar"
   },
   {
     "type": "dir",

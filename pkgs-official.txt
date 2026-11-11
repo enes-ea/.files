@@ -110,7 +110,6 @@ unzip
 vivid
 vulkan-mesa-layers
 vulkan-radeon
-waybar
 wget
 wl-clipboard
 words

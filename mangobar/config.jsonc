@@ -1,0 +1,64 @@
+{
+    "layer": "top",
+    "height": 30,
+    "sys-interval": 2,
+
+    "modules-left": [
+        "clock#time"
+    ],
+    "modules-center": [
+        "workspaces"
+    ],
+    "modules-right": [
+        "cpu",
+        "memory",
+        "pulseaudio",
+        "network",
+        "tray"
+    ],
+
+    "workspaces": {
+        "hide-empty": true,
+        "tag-names": ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+        "on-click": "activate",
+        "on-click-right": "toggle",
+        "scroll-interval": 100,
+        "on-scroll-up": "mmsg dispatch viewtoleft_have_client",
+        "on-scroll-down": "mmsg dispatch viewtoright_have_client"
+    },
+    "clock#time": {
+        "format": "{:L%d %B %A, %H:%M}"
+    },
+    "cpu": {
+        "interval": 3,
+        "format": "󰻠 {usage}%",
+        "on-click": "foot btop"
+    },
+    "memory": {
+        "interval": 3,
+        "format": "󰍛 {}%",
+        "on-click": "kitty btop"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 {volume}%",
+        "icons": ["󰕿", "󰖀", "󰕾"],
+        "scroll-step": 2,
+        "on-click": "pavucontrol",
+        "on-click-right": "pamixer -t"
+    },
+    "network": {
+        "format": "{icon}",
+        "format-wifi": "{icon}",
+        "format-disconnected": "{icon}",
+        "icon-wifi": "󰤨",
+        "icon-ethernet": "󰈀",
+        "icon-disconnected": "󰖪",
+        "format-alt": "{ifname} · {ipaddr}",
+        "interval": 15
+    },
+    "tray": {
+        "icon-size": 13,
+        "spacing": 10
+    }
+}

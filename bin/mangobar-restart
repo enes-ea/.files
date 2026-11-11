@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+pkill -x mangobar 2>/dev/null || true
+sleep 0.15
+
+exec env LC_TIME=tr_TR.UTF-8 mangobar \
+    -c "$HOME/.files/mangobar/config.jsonc" \
+    -s "$HOME/.files/mangobar/style.css"

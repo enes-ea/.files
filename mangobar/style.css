@@ -1,0 +1,66 @@
+@import url("./colors.css");
+
+* {
+    font-family: "JetBrainsMonoNL Nerd Font Propo";
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+#bar {
+    background-color: @mantle;
+    padding: 0 14px;
+}
+
+#workspaces button {
+    min-width: 20px;
+    padding: 0 8px;
+    margin: 0 2px;
+    background-color: rgba(137, 180, 250, 0.16);
+    color: @subtext1;
+}
+
+#workspaces button:hover {
+    background-color: rgba(137, 180, 250, 0.28);
+    color: #ffffff;
+}
+
+#workspaces button.active {
+    background-color: rgba(180, 190, 254, 0.32);
+    color: #ffffff;
+}
+
+#workspaces button.urgent {
+    color: @red;
+}
+
+#clock,
+#volume,
+#mem,
+#cpu,
+#network,
+#tray {
+    padding: 0 8px;
+    margin: 0 2px;
+    background-color: rgba(137, 180, 250, 0.16);
+}
+
+#network.disconnected {
+    color: @red;
+}
+
+menu {
+    background-color: @base;
+    border-color: @surface1;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+menuitem {
+    color: @text;
+}
+
+menuitem:hover {
+    background-color: @surface1;
+    color: #ffffff;
+}
