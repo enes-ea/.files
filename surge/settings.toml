@@ -27,9 +27,9 @@ warn_on_duplicate = true
 
 [network]
 custom_dns = ''
-default_download_rate_limit = '19 MiB/s'
+default_download_rate_limit = '∞'
 dial_hedge_count = 4
-global_rate_limit = '19 MiB/s'
+global_rate_limit = '∞'
 max_concurrent_downloads = 3
 max_concurrent_probes = 3
 max_connections_per_host = 32
