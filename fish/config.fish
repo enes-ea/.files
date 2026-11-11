@@ -7,6 +7,17 @@ set -gx npm_config_prefix "$HOME/.npm-global"
 
 if status is-interactive
 
+    # -- delete when mobile done
+    set -gx JAVA_HOME /usr/lib/jvm/java-21-openjdk
+    set -gx ANDROID_HOME $HOME/Android/Sdk
+    set -gx ANDROID_SDK_ROOT $ANDROID_HOME
+
+    fish_add_path $HOME/Projects/.development/flutter/bin
+    fish_add_path $ANDROID_HOME/platform-tools
+    fish_add_path $ANDROID_HOME/cmdline-tools/latest/bin
+    fish_add_path $ANDROID_HOME/emulator
+    # -- delete when mobile done
+
     fish_add_path ~/.bin
     fish_add_path ~/.local/bin
     fish_add_path ~/.local/share/cargo/bin
@@ -23,14 +34,17 @@ if status is-interactive
     alias eza='eza --icons=always --color=always -h'
     alias l='eza -l --sort=type'
     alias la='eza -al --sort=type'
+    alias lg='eza -l --sort=type --git'
+    alias lag='eza -al --sort=type --git'
     alias ld='eza -lD'
     alias lS='eza -al --sort=size'
     alias lm='eza -al --sort=modified'
     alias lt='eza -l --tree'
+    alias ltg='eza -l --tree --git'
     alias vim='nvim'
-    alias lg='lazygit'
     alias rm='rm -r -i'
     alias on='z ~/vault/iz/ && nvim start_page.md'
+    alias t='go-task'
 
     function v
         if test (count $argv) -gt 0
@@ -85,6 +99,10 @@ if status is-interactive
 
     source ~/.config/fish/keybinds.fish
 
+end
+
+function zndev-lab
+    bash -c 'set -a; . ./.env.lab; set +a; exec go run ./cmd/zndev "$@"' -- $argv
 end
 
 # Added by Antigravity CLI installer

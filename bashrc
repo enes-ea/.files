@@ -51,5 +51,8 @@ eval "$(zoxide init bash)"
 PS1='[\u@\h \W]\$ '
 
 
-# Added by Antigravity CLI installer
-export PATH="/home/enes/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
+export ANDROID_HOME="$HOME/Android/Sdk"
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
+export PATH="$HOME/Projects/.development/flutter/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$PATH"
