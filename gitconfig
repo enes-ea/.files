@@ -1,8 +1,8 @@
 # vim: ft=gitconfig
 [user]
     name= Enes Emre Aydogan
-    email= enes@aydogan.tech
-    signingKey=CF21183797F5AB25
+    email= enes@aydogan.io
+    signingKey=E2F0AA32BE0C869C
 
 [include]
     path = ~/.config/delta/catppuccin.gitconfig
