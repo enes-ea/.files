@@ -22,3 +22,7 @@ __pycache__/
 
 # docs
 docs/
+
+# Fish per-machine state
+fish/fish_variables
+fish/fishd.*

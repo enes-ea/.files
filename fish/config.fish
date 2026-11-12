@@ -43,7 +43,7 @@ if status is-interactive
     alias ltg='eza -l --tree --git'
     alias vim='nvim'
     alias rm='rm -r -i'
-    alias on='z ~/vault/iz/ && nvim start_page.md'
+    alias on='z ~/Documents/Notes && nvim notes.md'
     alias t='go-task'
 
     function v

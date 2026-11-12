@@ -107,24 +107,22 @@
 | `Alt+N` | — | harpoon file 3 (n) | — | — | — | Neovim-only |
 | `Alt+S` | — | harpoon file 4 (n) | — | — | — | Neovim-only |
 | `Super+O` | — | — | rofi (app launcher) | — | — | Mango-only |
-| `Super+Shift+Return` | — | — | spawn helium-browser | — | — | Mango-only |
+| `Super+Shift+Return` | — | — | spawn firefox | — | — | Mango-only |
 | `Super+P` | — | — | rofi-gopass | — | — | Mango-only |
 | `Super+E` | — | — | kitty (code terminal, `--app-id kitty-code`) | — | — | Mango-only |
 | `Super+V` | — | — | mpv-picker | — | — | Mango-only |
 | `Super+D` | — | — | zathura | — | — | Mango-only |
 | `Super+R` | — | — | toggle_named_scratchpad: kitty-runner | — | — | Mango-only |
 | `Super+N` | — | — | toggle_named_scratchpad: kitty-yazi | — | — | Mango-only |
-| `Super+M` | — | — | toggle_named_scratchpad: spotify-launcher | — | — | Mango-only |
 | `Super+S` | — | — | toggle_named_scratchpad: kitty-surge | — | — | Mango-only |
 | `Super+C` | — | — | toggle_named_scratchpad: qalculate-gtk | — | — | Mango-only |
 | `Super+B` | — | — | toggle_named_scratchpad: kitty-btop | — | — | Mango-only |
 | `Super+Y` | — | — | toggle_named_scratchpad: kitty-notes (nvim) | — | — | Mango-only |
 | `Super+K` | — | — | rofi-keybinds (keybind search) | — | — | Mango-only |
-| `Super+U` | — | — | clipmenu (clipboard manager) | — | — | Mango-only |
 | `Super+Q` | — | — | rofi-search (web search, `!yt` `!gh` `!git`) | — | — | Mango-only |
 | `Super+Shift+K` | — | — | rofi-kill (process killer) | — | — | Mango-only |
 | `Super+Shift+E` | — | — | rofi-emoji (emoji picker) | — | — | Mango-only |
-| `Super+Shift+B` | — | — | rofi-bookmarks (Helium bookmarks) | — | — | Mango-only |
+| `Super+Shift+B` | — | — | rofi-bookmarks (Firefox bookmarks) | — | — | Mango-only |
 
 ---
 
@@ -155,7 +153,7 @@
 
 | Shortcut | Kitty | Neovim | Mango | Fish | Same? | Notes |
 |---|---|---|---|---|---|---|
-| `lg` | — | — | — | lazygit alias | — | Shell command |
+| `lg` | — | — | — | eza alias (`--git`) | — | Shell command |
 | `]h` | — | next hunk (gitsigns) (n) | — | — | — | Neovim-only |
 | `[h` | — | prev hunk (gitsigns) (n) | — | — | — | Neovim-only |
 | `]H` | — | last hunk (gitsigns) (n) | — | — | — | Neovim-only |
@@ -227,7 +225,6 @@
 | `Super+Right btn` | — | — | moveresize curresize | — | — | Mango mouse |
 | `Super+Wheel ↑/↓` | — | — | viewtoleft/right_have_client | — | — | Mango axis |
 | `Super+Escape` | — | — | rofi-power (power menu) | — | — | Mango-only |
-| `Print` | — | — | grim (full screen) | — | — | Mango-only |
 | `Super+Shift+S` | — | — | grim + slurp (selection) | — | — | Mango-only |
 | `XF86AudioRaiseVolume` | — | — | wpctl set-volume 5%+ | — | — | Mango-only |
 | `XF86AudioLowerVolume` | — | — | wpctl set-volume 5%- | — | — | Mango-only |
@@ -294,9 +291,9 @@
 | `lm` | alias | `eza -al --sort=modified` | |
 | `lt` | alias | `eza -l --tree` | |
 | `vim` | alias | `nvim` | |
-| `lg` | alias | `lazygit` | |
+| `lg` | alias | `eza -l --sort=type --git` | |
 | `rm` | alias | `rm -r -i` | |
-| `on` | alias | `z ~/vault/iz/ && nvim start_page.md` | Open notes |
+| `on` | alias | `z ~/Documents/Notes && nvim notes.md` | Open notes |
 | `v` | function | fzf picker → nvim (no hidden) | |
 | `vh` | function | fzf picker → nvim (with hidden) | |
 | `y` | function | yazi (cwd tracking) | |

@@ -1,5 +1,5 @@
 -f bv*+ba/b
--P ~/Files/video/youtube
+-P ~/Media/Videos/youtube
 --embed-metadata
 --embed-thumbnail
 --merge-output-format mkv
