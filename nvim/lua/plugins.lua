@@ -21,6 +21,9 @@ vim.pack.add({
     { src = gh("ThePrimeagen/harpoon"), version = "harpoon2" },
     gh("nvim-pack/nvim-spectre"),
     gh("folke/trouble.nvim"),
+    gh("mason-org/mason.nvim"),
+    gh("mason-org/mason-lspconfig.nvim"),
+    gh("WhoIsSethDaniel/mason-tool-installer.nvim"),
 })
 
 -- catppuccin
@@ -72,6 +75,22 @@ vim.cmd.colorscheme("catppuccin-nvim")
 
 require("mini.pairs").setup()
 require("nvim-web-devicons").setup({})
+
+-- mason
+
+require("mason").setup({
+    PATH = "skip",
+    ui = { border = "rounded" },
+})
+require("mason-lspconfig").setup({
+    ensure_installed = { "lua_ls", "fish_lsp", "marksman", "pyright", "ruff" },
+    automatic_enable = true,
+})
+require("mason-tool-installer").setup({
+    ensure_installed = { "stylua", "prettier", "clang-format", "shellcheck" },
+    run_on_start = true,
+    start_delay = 3000,
+})
 
 -- LSP
 
