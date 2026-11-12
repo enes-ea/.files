@@ -148,10 +148,10 @@ Apply it with:
 sudo sysctl --system
 ```
 
-> **Heads-up:** `INSTALL.md` §15 suggests `vm.swappiness=10` in
-> `/etc/sysctl.d/99-sysctl.conf`. On this machine that file does **not** exist,
-> and `swappiness=10` is the wrong direction for zram — it tells the kernel to
-> avoid swap. If you ever add that file, drop the `vm.swappiness` line (or set it
+> **Heads-up:** an older install guide suggested `vm.swappiness=10` in
+> `/etc/sysctl.d/99-sysctl.conf`. That file does **not** exist here, and
+> `swappiness=10` is the wrong direction for zram — it tells the kernel to
+> avoid swap. If you ever add it, drop the `vm.swappiness` line (or set it
 > to `100`) when using zram.
 
 ### Advanced: reclaim tuning (only if you see thrashing)
