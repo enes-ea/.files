@@ -163,10 +163,5 @@
     "type": "dir",
     "src": "yt-dlp",
     "dst": "yt-dlp"
-  },
-  {
-    "type": "dir",
-    "src": "MangoHud",
-    "dst": "MangoHud"
   }
 ]

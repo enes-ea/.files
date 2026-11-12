@@ -42,7 +42,6 @@ alias cat='bat --paging=never'
 alias cd='z'        # zoxide
 alias vim='nvim'
 alias g='git'
-alias lg='lazygit'
 
 # ── Zoxide ─────────────────────────────────────────────────────
 eval "$(zoxide init bash)"

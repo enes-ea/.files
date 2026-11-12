@@ -1,2 +1,0 @@
-- [ ] use a privite clipboard. set all of the apps for that clipboard.
-- [ ] reconfigure everything. do not use ai. do it yourself.
