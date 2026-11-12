@@ -1,3 +1,5 @@
+set -g fish_greeting
+
 # ---- toolchain homes (XDG) ----
 set -gx RUSTUP_HOME "$HOME/.local/share/rustup"
 set -gx CARGO_HOME "$HOME/.local/share/cargo"
