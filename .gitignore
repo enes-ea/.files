@@ -23,6 +23,9 @@ __pycache__/
 # docs
 docs/
 
+# Cloned wiki folders
+*.wiki/
+
 # Fish per-machine state
 fish/fish_variables
 fish/fishd.*
