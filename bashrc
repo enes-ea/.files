@@ -17,7 +17,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"   # cleaner than the awk appro
 export GPG_TTY=$(tty)
 
 # ── PATH ───────────────────────────────────────────────────────
-export PATH="$HOME/.local/bin:$HOME/.local/share/cargo/bin:$HOME/.local/share/nvim/mason/bin:$HOME/.local/share/go/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.local/share/cargo/bin:$HOME/.local/share/go/bin:$PATH"
 
 # ── Colors ─────────────────────────────────────────────────────
 export LS_COLORS="$(vivid generate catppuccin-mocha)"
@@ -55,3 +55,6 @@ export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 export ANDROID_HOME="$HOME/Android/Sdk"
 export ANDROID_SDK_ROOT="$ANDROID_HOME"
 export PATH="$HOME/Projects/.development/flutter/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$PATH"
+
+# Mason tools last: system binaries win
+export PATH="$PATH:$HOME/.local/share/nvim/mason/bin"
