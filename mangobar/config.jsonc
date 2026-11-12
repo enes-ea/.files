@@ -1,6 +1,6 @@
 {
     "layer": "top",
-    "hide-on-mod": true,
+    "show-on-mod": true,
     "height": 30,
     "sys-interval": 2,
 
