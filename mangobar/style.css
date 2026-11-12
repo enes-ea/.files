@@ -8,7 +8,7 @@
 }
 
 #bar {
-    background-color: @mantle;
+    background: none;
     padding: 0 14px;
 }
 
@@ -16,17 +16,17 @@
     min-width: 20px;
     padding: 0 8px;
     margin: 0 2px;
-    background-color: rgba(137, 180, 250, 0.16);
+    background: #2989b4fa;
     color: @subtext1;
 }
 
 #workspaces button:hover {
-    background-color: rgba(137, 180, 250, 0.28);
+    background: #4789b4fa;
     color: #ffffff;
 }
 
 #workspaces button.active {
-    background-color: rgba(180, 190, 254, 0.32);
+    background: #52b4befe;
     color: #ffffff;
 }
 
@@ -42,7 +42,7 @@
 #tray {
     padding: 0 8px;
     margin: 0 2px;
-    background-color: rgba(137, 180, 250, 0.16);
+    background: #2989b4fa;
 }
 
 #network.disconnected {
