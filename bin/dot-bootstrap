@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+# Reinstall vendor-provided files that are intentionally not tracked in git.
+#
+# Restores:
+#   - fish plugins/themes   via fisher, from fish/fish_plugins
+#   - mpv uosc + thumbfast  from pinned upstream releases
+#   - yazi plugins/flavors  via `ya pkg install`, from yazi/package.toml
+#
+# Usage: dot-bootstrap [--force]
+set -euo pipefail
+
+ROOT="${DOTFILES_DIR:-$HOME/.files}"
+UOSC_VERSION="5.12.0"
+THUMBFAST_REV="0f711de3138c9bd6718209d819ac54022c23ded2"
+
+FORCE=0
+case "${1:-}" in
+    --force|-f) FORCE=1 ;;
+    "") ;;
+    *) echo "usage: ${0##*/} [--force]" >&2; exit 2 ;;
+esac
+
+say()  { printf '  %s\n' "$*"; }
+warn() { printf '\033[33mwarn:\033[0m %s\n' "$*" >&2; }
+die()  { printf '\033[31merror:\033[0m %s\n' "$*" >&2; exit 1; }
+need() { command -v "$1" >/dev/null 2>&1 || die "missing dependency: $1"; }
+
+[[ -d "$ROOT" ]] || die "dotfiles root not found: $ROOT (set DOTFILES_DIR)"
+need git
+need curl
+need unzip
+
+# ---------------------------------------------------------------- fish plugins
+if command -v fish >/dev/null 2>&1; then
+    echo "fish plugins"
+    if ! fish -c 'type -q fisher' >/dev/null 2>&1; then
+        say "fisher not installed, installing..."
+        fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+                 and fisher install jorgebucaran/fisher'
+    fi
+    fish -c 'fisher update'
+else
+    warn "fish not found, skipping fish plugins"
+fi
+
+# ------------------------------------------------------------------------ mpv
+echo "mpv scripts"
+if [[ $FORCE -eq 1 || ! -f "$ROOT/mpv/scripts/uosc/main.lua" || ! -f "$ROOT/mpv/scripts/thumbfast.lua" ]]; then
+    tmp="$(mktemp -d)"
+    trap 'rm -rf "$tmp"' EXIT
+
+    say "uosc $UOSC_VERSION"
+    curl -fsSL -o "$tmp/uosc.zip" \
+        "https://github.com/tomasklaen/uosc/releases/download/$UOSC_VERSION/uosc.zip"
+    mkdir -p "$ROOT/mpv/scripts" "$ROOT/mpv/fonts"
+    rm -rf "$ROOT/mpv/scripts/uosc"
+    # Only scripts/uosc and fonts: never touch tracked script-opts/uosc.conf.
+    unzip -q -o "$tmp/uosc.zip" 'scripts/uosc/*' 'fonts/*' -d "$ROOT/mpv"
+    # Release ships ziggy for all platforms; keep only the Linux one.
+    rm -f "$ROOT/mpv/scripts/uosc/bin/ziggy-darwin" \
+          "$ROOT/mpv/scripts/uosc/bin/ziggy-windows.exe"
+
+    say "thumbfast @ ${THUMBFAST_REV:0:7}"
+    curl -fsSL -o "$ROOT/mpv/scripts/thumbfast.lua" \
+        "https://raw.githubusercontent.com/po5/thumbfast/$THUMBFAST_REV/thumbfast.lua"
+
+    rm -rf "$tmp"
+    trap - EXIT
+else
+    say "already installed (use --force to reinstall)"
+fi
+
+# ----------------------------------------------------------------------- yazi
+echo "yazi plugins"
+if command -v ya >/dev/null 2>&1; then
+    (cd "$ROOT/yazi" && ya pkg install)
+else
+    warn "ya not found, skipping yazi plugins"
+fi
+
+echo "done"

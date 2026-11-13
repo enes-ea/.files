@@ -29,3 +29,23 @@ docs/
 # Fish per-machine state
 fish/fish_variables
 fish/fishd.*
+
+# Vendor files installed by package managers (see bin/dot-bootstrap)
+# fish plugins (fisher, see fish/fish_plugins)
+fish/conf.d/
+fish/functions/_*.fish
+fish/functions/fisher.fish
+fish/functions/fzf_configure_bindings.fish
+fish/functions/fish_prompt.fish
+fish/functions/fish_title.fish
+fish/functions/fish_mode_prompt.fish
+fish/completions/fisher.fish
+fish/completions/fzf_configure_bindings.fish
+fish/themes/
+# mpv scripts (uosc release archive, thumbfast)
+mpv/scripts/uosc/
+mpv/scripts/thumbfast.lua
+mpv/fonts/
+# yazi plugins/flavors (see yazi/package.toml)
+yazi/plugins/
+yazi/flavors/
