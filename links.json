@@ -163,5 +163,11 @@
     "type": "dir",
     "src": "yt-dlp",
     "dst": "yt-dlp"
+  },
+  {
+    "type": "file",
+    "src": "firefox/user.js",
+    "dst": "user.js",
+    "glob": ".config/mozilla/firefox/*.default-release"
   }
 ]
