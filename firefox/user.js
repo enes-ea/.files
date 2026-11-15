@@ -228,6 +228,37 @@ user_pref("keyword.enabled", true);
 user_pref("gfx.webrender.all", true);
 user_pref("extensions.activeThemeID", "nova-ash@mozilla.org");
 
+/** WEBGPU ***/
+user_pref("dom.webgpu.enabled", true);
+user_pref("dom.webgpu.workers.enabled", true);
+
+/** SESSION RESTORE ***/
+user_pref("browser.sessionstore.resume_from_crash", false);
+user_pref("browser.sessionstore.max_resumed_crashes", 0);
+
+/** MEDIA ***/
+user_pref("media.autoplay.default", 5);
+user_pref("media.autoplay.blocking_policy", 2);
+user_pref("media.hardware-video-decoding-vulkan.enabled", true);
+
+/** TABS ***/
+user_pref("browser.tabs.unloadOnLowMemory", true);
+user_pref("browser.tabs.closeWindowWithLastTab", false);
+
+/** OPEN SEARCH / URL IN NEW TAB ***/
+user_pref("browser.search.openintab", true);
+user_pref("browser.urlbar.openintab", true);
+
+/** HTTPS-ONLY ***/
+user_pref("dom.security.https_only_mode_send_http_background_request", false);
+
+/** DOWNLOADS ***/
+user_pref("browser.download.always_ask_before_handling_new_types", false);
+
+/** PERMISSIONS ***/
+user_pref("permissions.default.camera", 2);
+user_pref("permissions.default.microphone", 2);
+
 /****************************************************************************
  * END: BETTERFOX                                                           *
 ****************************************************************************/
