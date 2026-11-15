@@ -1,8 +1,10 @@
 # vim: ft=gitconfig
+
 [user]
-    name= Enes Emre Aydogan
-    email= enes@aydogan.io
-    signingKey=E2F0AA32BE0C869C
+    name = Enes Emre Aydogan
+    email = enes@aydogan.io
+    signingKey = E2F0AA32BE0C869C
+    useConfigOnly = true
 
 [include]
     path = ~/.config/delta/catppuccin.gitconfig
@@ -10,31 +12,113 @@
 
 [core]
     editor = nvim
+    pager = delta
     autocrlf = input
     safecrlf = true
-    pager = delta
+    quotePath = false
 
 [init]
     defaultBranch = main
 
 [commit]
     gpgSign = true
+    verbose = true
+
+[tag]
+    gpgSign = true
+
+[pretty]
+    lg  = "tformat:%C(#89b4fa)%h%Creset%C(auto)%d%Creset %<(50,trunc)%s %C(#6c7086)(%cr)%Creset"
+    lgw = "tformat:%C(#89b4fa)%h%Creset%C(auto)%d%Creset %<(45,trunc)%s %C(#6c7086)(%cr)%Creset %C(#94e2d5)<%an>%Creset"
 
 [alias]
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    lgb = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches
+    lg      = log --graph --date-order --pretty=lg
+    lgw     = log --graph --date-order --pretty=lgw
+    lgb     = lg --branches
+    lgr     = lg --remotes
+    lgt     = lg --tags
+    lga     = lg --all
+    st      = status -sb
+    br      = branch -vv
+    unstage = restore --staged
+    amend   = commit --amend --no-edit
+    undo    = reset --soft HEAD~1
+    last    = log -1 --stat
 
-[core]
-    pager = delta
+[log]
+    graphColors = "#89b4fa,#a6e3a1,#fab387,#cba6f7,#94e2d5,#f5c2e7,#f9e2af,#89dceb"
+
+[color "decorate"]
+    HEAD         = "bold #b4befe"
+    branch       = "bold #a6e3a1"
+    remoteBranch = "bold #f38ba8"
+    tag          = "bold #f9e2af"
+    stash        = "bold #cba6f7"
+    grafted      = "bold #6c7086"
+
+[color "branch"]
+    current  = "bold #a6e3a1"
+    local    = "#a6e3a1"
+    remote   = "#f38ba8"
+    upstream = "bold #89dceb"
+    plain    = "#cdd6f4"
+
+[color "status"]
+    header       = "#89b4fa"
+    branch       = "bold #89b4fa"
+    added        = "#a6e3a1"
+    changed      = "#f9e2af"
+    untracked    = "#f38ba8"
+    unmerged     = "bold #f38ba8"
+    localBranch  = "bold #a6e3a1"
+    remoteBranch = "#f38ba8"
+
+[column]
+    ui = auto
+
+[branch]
+    sort = -committerdate
+
+[diff]
+    algorithm = histogram
+    colorMoved = default
+    mnemonicPrefix = true
+
+[merge]
+    conflictStyle = zdiff3
+
+[fetch]
+    prune = true
+    writeCommitGraph = true
+
+[push]
+    autoSetupRemote = true
+    followTags = true
+
+[pull]
+    rebase = true
+
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+
+[rerere]
+    enabled = true
+
+[help]
+    autocorrect = prompt
 
 [interactive]
     diffFilter = delta --color-only
 
 [delta]
-    navigate = true  # use n and N to move between diff sections
-    dark = true      # or light = true, or omit for auto-detection
+    navigate = true
+    dark = true
     line-numbers = true
     features = catppuccin-mocha
-
-[merge]
-    conflictStyle = zdiff3
+    side-by-side = true
+    hyperlinks = true
+    tabs = 2
+    line-numbers-left-format = "{nm:>3} "
+    line-numbers-right-format = "{np:>3} "
