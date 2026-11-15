@@ -1,7 +1,10 @@
 {
-  "$schema": "https://opencode.ai/config.json",
-  "lsp": true,
-  "plugin": [
-    "./plugins/caveman"
-  ]
+    "$schema": "https://opencode.ai/config.json",
+    "lsp": true,
+    "compaction": {
+        "auto": true,
+        "keep": { "tokens": 25000 },
+    },
+    "plugin": [
+    ]
 }
