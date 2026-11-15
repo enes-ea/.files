@@ -87,7 +87,7 @@ require("mason-lspconfig").setup({
     automatic_enable = true,
 })
 require("mason-tool-installer").setup({
-    ensure_installed = { "stylua", "prettier", "clang-format", "shellcheck" },
+    ensure_installed = { "stylua", "prettier", "clang-format", "shellcheck", "golangci-lint","gotestsum"  },
     run_on_start = true,
     start_delay = 3000,
 })
