@@ -5,30 +5,55 @@ ROOT="$HOME/.files"
 CONFIG="$HOME/.config"
 LINKS="$ROOT/links.json"
 
-jq -c '.[]' "$LINKS" | while read -r entry; do
-  src=$(jq -r '.src' <<<"$entry")
-  dst=$(jq -r '.dst' <<<"$entry")
-  root=$(jq -r '.root // "config"' <<<"$entry")
+# Create a symlink, refusing targets whose parent symlink resolves back into
+# the dotfiles root (e.g. ~/.config → ~/.files), which would self-link.
+safe_link() {
+  local target="$1" link="$2" label="$3"
+  local link_dir resolved_link_dir resolved_link
 
-  target="$ROOT/$src"
-  [[ "$root" == "home" ]] && link="$HOME/$dst" || link="$CONFIG/$dst"
-
-  # Resolve link directory to detect if a parent symlink (e.g. ~/.config → ~/.files)
-  # would make us write inside $ROOT, causing a recursive self-link.
   link_dir="$(dirname "$link")"
   resolved_link_dir="$(realpath "$link_dir" 2>/dev/null || echo "")"
   if [[ -n "$resolved_link_dir" ]]; then
     resolved_link="$resolved_link_dir/$(basename "$link")"
     if [[ "$resolved_link" == "$target" || "$resolved_link" == "$target"/* ]]; then
-      printf '  \e[31mERROR:\e[0m %s would create a recursive symlink (%s → %s). Skipping.\n' "$src" "$resolved_link" "$target"
-      continue
+      printf '  \e[31mERROR:\e[0m %s would create a recursive symlink (%s → %s). Skipping.\n' "$label" "$resolved_link" "$target"
+      return 0
     fi
   fi
 
   [[ -e "$link" || -L "$link" ]] && rm -rf "$link"
   mkdir -p "$link_dir"
   ln -s "$target" "$link"
-  printf '  %s \e[2m→\e[22m %s\n' "$src" "$link"
+  printf '  %s \e[2m→\e[22m %s\n' "$label" "$link"
+}
+
+jq -c '.[]' "$LINKS" | while read -r entry; do
+  src=$(jq -r '.src' <<<"$entry")
+  dst=$(jq -r '.dst' <<<"$entry")
+  root=$(jq -r '.root // "config"' <<<"$entry")
+  glob=$(jq -r '.glob // empty' <<<"$entry")
+
+  target="$ROOT/$src"
+
+  if [[ -n "$glob" ]]; then
+    shopt -s nullglob
+    matches=("$HOME"/$glob)
+    shopt -u nullglob
+
+    if (( ${#matches[@]} == 0 )); then
+      printf '  \e[33mWARN:\e[0m %s matched no paths (%s). Skipping.\n' "$src" "$glob"
+      continue
+    fi
+
+    for profile in "${matches[@]}"; do
+      [[ -d "$profile" ]] || continue
+      safe_link "$target" "$profile/$dst" "$src [$(basename "$profile")]"
+    done
+    continue
+  fi
+
+  [[ "$root" == "home" ]] && link="$HOME/$dst" || link="$CONFIG/$dst"
+  safe_link "$target" "$link" "$src"
 done
 
 # Link per-machine profile overrides (selected by hostname, or DOT_PROFILE)
