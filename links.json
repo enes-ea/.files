@@ -76,11 +76,6 @@
     "dst": "opencode/opencode.jsonc"
   },
   {
-    "type": "dir",
-    "src": "opencode/themes",
-    "dst": "opencode/themes"
-  },
-  {
     "type": "file",
     "src": "keybinds/fish-keybinds.fish",
     "dst": "fish/keybinds.fish"

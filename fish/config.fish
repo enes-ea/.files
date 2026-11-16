@@ -31,7 +31,7 @@ if status is-interactive
     set -gx EDITOR nvim
     set -g async_prompt_functions _pure_prompt_git
 
-    fish_config theme choose catppuccin-mocha --color-theme dark
+    fish_config theme choose tokyonight_night
 
     alias eza='eza --icons=always --color=always -h'
     alias l='eza -l --sort=type'

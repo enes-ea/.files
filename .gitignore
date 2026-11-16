@@ -41,7 +41,6 @@ fish/functions/fish_title.fish
 fish/functions/fish_mode_prompt.fish
 fish/completions/fisher.fish
 fish/completions/fzf_configure_bindings.fish
-fish/themes/
 # mpv scripts (uosc release archive, thumbfast)
 mpv/scripts/uosc/
 mpv/scripts/thumbfast.lua

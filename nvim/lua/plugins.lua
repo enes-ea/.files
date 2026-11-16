@@ -14,7 +14,7 @@ vim.pack.add({
     gh("saghen/blink.cmp"),
     gh("romus204/tree-sitter-manager.nvim"),
     gh("nvim-mini/mini.pairs"),
-    { src = gh("catppuccin/nvim"), name = "catppuccin" },
+    gh("folke/tokyonight.nvim"),
     gh("folke/snacks.nvim"),
     gh("stevearc/conform.nvim"),
     gh("lewis6991/gitsigns.nvim"),
@@ -26,52 +26,25 @@ vim.pack.add({
     gh("WhoIsSethDaniel/mason-tool-installer.nvim"),
 })
 
--- catppuccin
+-- tokyonight
 
-require("catppuccin").setup({
-    compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
-    flavour = "mocha",
-    term_colors = true,
+-- Tokyonight has no compile_path option; redirect its highlight cache.
+require("tokyonight.util").cache.file = function(key)
+    return vim.fn.stdpath("cache") .. "/tokyonight/" .. key .. ".json"
+end
+
+require("tokyonight").setup({
+    style = "night",
+    terminal_colors = true,
+    cache = true,
     styles = {
-        comments = { "italic" },
-        conditionals = { "bold" },
-        loops = { "bold" },
-        functions = { "bold" },
-        keywords = { "bold" },
-        strings = {},
+        comments = { italic = true },
+        keywords = { bold = true },
+        functions = { bold = true },
         variables = {},
-        numbers = { "bold" },
-        booleans = { "bold" },
-        properties = { "italic" },
-        types = { "bold" },
-        operators = {},
-    },
-    default_integrations = false,
-    auto_integrations = true,
-    integrations = {
-        native_lsp = {
-            enabled = true,
-            virtual_text = {
-                errors = { "italic" },
-                hints = { "italic" },
-                warnings = { "italic" },
-                information = { "italic" },
-                ok = { "italic" },
-            },
-            underlines = {
-                errors = { "underline" },
-                hints = { "underline" },
-                warnings = { "underline" },
-                information = { "underline" },
-                ok = { "underline" },
-            },
-            inlay_hints = {
-                background = true,
-            },
-        },
     },
 })
-vim.cmd.colorscheme("catppuccin-nvim")
+vim.cmd.colorscheme("tokyonight")
 
 require("mini.pairs").setup()
 require("nvim-web-devicons").setup({})

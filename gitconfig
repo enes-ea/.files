@@ -7,7 +7,7 @@
     useConfigOnly = true
 
 [include]
-    path = ~/.config/delta/catppuccin.gitconfig
+    path = ~/.config/delta/tokyonight.gitconfig
     path = ~/.files/gitconfig-local
 
 [core]
@@ -28,8 +28,8 @@
     gpgSign = true
 
 [pretty]
-    lg  = "tformat:%C(#89b4fa)%h%Creset%C(auto)%d%Creset %<(50,trunc)%s %C(#6c7086)(%cr)%Creset"
-    lgw = "tformat:%C(#89b4fa)%h%Creset%C(auto)%d%Creset %<(45,trunc)%s %C(#6c7086)(%cr)%Creset %C(#94e2d5)<%an>%Creset"
+    lg  = "tformat:%C(#7aa2f7)%h%Creset%C(auto)%d%Creset %<(50,trunc)%s %C(#565f89)(%cr)%Creset"
+    lgw = "tformat:%C(#7aa2f7)%h%Creset%C(auto)%d%Creset %<(45,trunc)%s %C(#565f89)(%cr)%Creset %C(#73daca)<%an>%Creset"
 
 [alias]
     lg      = log --graph --date-order --pretty=lg
@@ -46,32 +46,32 @@
     last    = log -1 --stat
 
 [log]
-    graphColors = "#89b4fa,#a6e3a1,#fab387,#cba6f7,#94e2d5,#f5c2e7,#f9e2af,#89dceb"
+    graphColors = "#7aa2f7,#9ece6a,#ff9e64,#bb9af7,#73daca,#ff007c,#e0af68,#7dcfff"
 
 [color "decorate"]
-    HEAD         = "bold #b4befe"
-    branch       = "bold #a6e3a1"
-    remoteBranch = "bold #f38ba8"
-    tag          = "bold #f9e2af"
-    stash        = "bold #cba6f7"
-    grafted      = "bold #6c7086"
+    HEAD         = "bold #bb9af7"
+    branch       = "bold #9ece6a"
+    remoteBranch = "bold #f7768e"
+    tag          = "bold #e0af68"
+    stash        = "bold #bb9af7"
+    grafted      = "bold #565f89"
 
 [color "branch"]
-    current  = "bold #a6e3a1"
-    local    = "#a6e3a1"
-    remote   = "#f38ba8"
-    upstream = "bold #89dceb"
-    plain    = "#cdd6f4"
+    current  = "bold #9ece6a"
+    local    = "#9ece6a"
+    remote   = "#f7768e"
+    upstream = "bold #7dcfff"
+    plain    = "#c0caf5"
 
 [color "status"]
-    header       = "#89b4fa"
-    branch       = "bold #89b4fa"
-    added        = "#a6e3a1"
-    changed      = "#f9e2af"
-    untracked    = "#f38ba8"
-    unmerged     = "bold #f38ba8"
-    localBranch  = "bold #a6e3a1"
-    remoteBranch = "#f38ba8"
+    header       = "#7aa2f7"
+    branch       = "bold #7aa2f7"
+    added        = "#9ece6a"
+    changed      = "#e0af68"
+    untracked    = "#f7768e"
+    unmerged     = "bold #f7768e"
+    localBranch  = "bold #9ece6a"
+    remoteBranch = "#f7768e"
 
 [column]
     ui = auto
@@ -116,7 +116,7 @@
     navigate = true
     dark = true
     line-numbers = true
-    features = catppuccin-mocha
+    features = tokyonight-night
     side-by-side = true
     hyperlinks = true
     tabs = 2

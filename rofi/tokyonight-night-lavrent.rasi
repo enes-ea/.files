@@ -1,21 +1,20 @@
 /**
- * Catppuccin Mocha theme
- * Color palette copied from https://catppuccin.com/palette
- * https://github.com/hiimsergey/rofi-catppuccin
+ * Tokyo Night theme
+ * Color palette copied from https://github.com/folke/tokyonight.nvim
  */
 
 * {
-    base: #1e1e2e;
-    surface0: #313244;
-    overlay0: #6c7086;
-    text: #cdd6f4;
+    base: #1a1b26;
+    surface0: #292e42;
+    overlay0: #565f89;
+    text: #c0caf5;
 
-    mauve: #cba6f7;
-    red: #f38ba8;
-    peach: #fab387;
-    green: #a6e3a1;
-    blue: #89b4fa;
-    lavender: #b4befe;
+    mauve: #bb9af7;
+    red: #f7768e;
+    peach: #ff9e64;
+    green: #9ece6a;
+    blue: #7aa2f7;
+    lavender: #9d7cd8;
 
     background-color: @base;
 }

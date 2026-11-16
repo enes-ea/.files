@@ -16,18 +16,18 @@
     min-width: 20px;
     padding: 0 8px;
     margin: 0 2px;
-    background: #2989b4fa;
+    background: #297aa2f7;
     border-radius: 4;
     color: @subtext1;
 }
 
 #workspaces button:hover {
-    background: #4789b4fa;
+    background: #477aa2f7;
     color: #ffffff;
 }
 
 #workspaces button.active {
-    background: #52b4befe;
+    background: #52bb9af7;
     color: #ffffff;
 }
 
@@ -43,7 +43,7 @@
 #tray {
     padding: 0 8px;
     margin: 0 2px;
-    background: #2989b4fa;
+    background: #297aa2f7;
 }
 
 #network.disconnected {
