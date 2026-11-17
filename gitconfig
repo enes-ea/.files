@@ -44,6 +44,7 @@
     amend   = commit --amend --no-edit
     undo    = reset --soft HEAD~1
     last    = log -1 --stat
+    t       = tag --sort=-v:refname
 
 [log]
     graphColors = "#7aa2f7,#9ece6a,#ff9e64,#bb9af7,#73daca,#ff007c,#e0af68,#7dcfff"
