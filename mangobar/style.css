@@ -4,7 +4,7 @@
     font-family: "JetBrainsMonoNL Nerd Font Propo";
     font-size: 16px;
     font-weight: 500;
-    color: #ffffff;
+    color: @text;
 }
 
 #bar {
@@ -16,23 +16,24 @@
     min-width: 20px;
     padding: 0 8px;
     margin: 0 2px;
-    background: #297aa2f7;
+    background: @surface0;
     border-radius: 4;
     color: @subtext1;
 }
 
 #workspaces button:hover {
-    background: #477aa2f7;
-    color: #ffffff;
+    background: @surface1;
+    color: @text;
 }
 
 #workspaces button.active {
-    background: #52bb9af7;
-    color: #ffffff;
+    background: @blue;
+    color: @crust;
 }
 
 #workspaces button.urgent {
-    color: @red;
+    background: @red;
+    color: @crust;
 }
 
 #clock,
@@ -43,11 +44,13 @@
 #tray {
     padding: 0 8px;
     margin: 0 2px;
-    background: #297aa2f7;
+    background: @surface0;
+    color: @text;
 }
 
 #network.disconnected {
-    color: @red;
+    background: @red;
+    color: @crust;
 }
 
 menu {
@@ -63,5 +66,5 @@ menuitem {
 
 menuitem:hover {
     background-color: @surface1;
-    color: #ffffff;
+    color: @text;
 }
