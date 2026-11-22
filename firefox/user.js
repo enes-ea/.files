@@ -237,8 +237,8 @@ user_pref("browser.sessionstore.resume_from_crash", false);
 user_pref("browser.sessionstore.max_resumed_crashes", 0);
 
 /** MEDIA ***/
-user_pref("media.autoplay.default", 5);
-user_pref("media.autoplay.blocking_policy", 2);
+user_pref("media.autoplay.default", 0);
+user_pref("media.autoplay.blocking_policy", 0);
 user_pref("media.hardware-video-decoding-vulkan.enabled", true);
 
 /** TABS ***/
