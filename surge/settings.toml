@@ -23,11 +23,12 @@ show_speed_graph = true
 skip_update_check = false
 theme = 2
 theme_path = '/home/enes/.config/surge/themes/tokyonight.toml'
+transparent_background = false
 warn_on_duplicate = true
 
 [network]
 custom_dns = ''
-default_download_rate_limit = '∞'
+default_download_rate_limit = '90 MiB/s'
 dial_hedge_count = 4
 global_rate_limit = '∞'
 max_concurrent_downloads = 3
