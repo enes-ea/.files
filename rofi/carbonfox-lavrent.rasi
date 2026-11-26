@@ -79,8 +79,7 @@ listview {
     padding: 4 0;
     columns: 1;
     lines: 10;
-    dynamic: true;
-    fixed-height: false;
+    fixed-height: true;
     spacing: 2;
     scrollbar: false;
     border: 0;
