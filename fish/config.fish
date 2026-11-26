@@ -33,6 +33,10 @@ if status is-interactive
 
     fish_config theme choose carbonfox
 
+    # ghost text + pager descriptions: carbonfox fg3 instead of official comment grey
+    set -g fish_color_autosuggestion 7b7c7e
+    set -g fish_pager_color_description 7b7c7e
+
     # fzf — carbonfox colors, same defaults as fzf.fish wrapper
     set -gx FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=90% --preview-window=wrap --marker="*" --color=fg:#f2f4f8,bg:#161616,hl:#78a9ff,fg+:#f2f4f8,bg+:#2a2a2a,hl+:#8cb6ff,info:#6e6f70,prompt:#33b1ff,pointer:#ee5396,marker:#25be6a,spinner:#be95ff,header:#08bdba,border:#353535,label:#b6b8bb,query:#f2f4f8,separator:#353535,scrollbar:#525253,preview-bg:#0c0c0c,preview-border:#353535,preview-label:#b6b8bb'
 
