@@ -123,6 +123,7 @@
 | `Super+Shift+K` | — | — | rofi-kill (process killer) | — | — | Mango-only |
 | `Super+Shift+E` | — | — | rofi-emoji (emoji picker) | — | — | Mango-only |
 | `Super+Shift+B` | — | — | rofi-bookmarks (Firefox bookmarks) | — | — | Mango-only |
+| `Super+G` | — | — | rofi-project (git repo picker, opens 3-tab kitty session) | — | — | Mango-only |
 
 ---
 

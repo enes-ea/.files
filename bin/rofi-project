@@ -1,0 +1,83 @@
+#!/bin/bash
+# Pick a git repo under the given roots and open a 3-tab kitty session there.
+# Usage: rofi-project [ROOT...]   (default root: ~/Code)
+
+SESSION="$HOME/.files/kitty/sessions/project.conf"
+CATEGORY_COLOR="#6e6f70"
+
+pango_escape() {
+    local s=$1
+    s=${s//&/&amp;}
+    s=${s//</&lt;}
+    s=${s//>/&gt;}
+    printf '%s' "$s"
+}
+
+roots=("$@")
+[[ ${#roots[@]} -eq 0 ]] && roots=("$HOME/Code")
+
+dirs=()
+declare -A category_of
+for root in "${roots[@]}"; do
+    root="${root/#\~/$HOME}"
+    [[ -d "$root" ]] || continue
+    while IFS= read -r dir; do
+        [[ -n "$dir" ]] || continue
+        dirs+=("$dir")
+        if [[ "$dir" == "$root" ]]; then
+            category_of["$dir"]=$(basename "$root")
+        else
+            rel="${dir#"$root"/}"
+            category_of["$dir"]="${rel%%/*}"
+        fi
+    done < <(find "$root" -type d -name .git -prune -printf '%h\n' 2>/dev/null)
+done
+
+if [[ ${#dirs[@]} -eq 0 ]]; then
+    notify-send "rofi-project" "No git repos found in: ${roots[*]}" -t 2000
+    exit 1
+fi
+
+mapfile -t dirs < <(printf '%s\n' "${dirs[@]}" | sort -u)
+
+# Count category/name pairs so same-category duplicates get a parent prefix.
+declare -A name_count
+for dir in "${dirs[@]}"; do
+    key="${category_of["$dir"],,}/$(basename "$dir")"
+    name_count["$key"]=$(( ${name_count["$key"]:-0} + 1 ))
+done
+
+declare -A used
+lines=()
+for dir in "${dirs[@]}"; do
+    category="${category_of["$dir"],,}"
+    name=$(basename "$dir")
+    key="$category/$name"
+    if (( name_count["$key"] > 1 )); then
+        label="$(basename "$(dirname "$dir")")/$name"
+    else
+        label="$name"
+    fi
+
+    label=$(pango_escape "$label")
+    cat_markup=$(pango_escape "$category")
+    line="$label <span foreground=\"$CATEGORY_COLOR\">$cat_markup</span>"
+
+    # Still colliding (same parent name in different roots): fall back to ~ path.
+    if [[ -n ${used[$line]:-} ]]; then
+        label=$(pango_escape "${dir/#$HOME/~}")
+        line="$label <span foreground=\"$CATEGORY_COLOR\">$cat_markup</span>"
+    fi
+    used["$line"]=1
+    lines+=("$line")
+done
+
+# -format i returns the row index, which keeps the dir mapping markup-safe.
+selected=$(printf '%s\n' "${lines[@]}" |
+    rofi -dmenu -i -markup-rows -format i -p 'projects' -theme-str 'prompt { text-color: #78a9ff; }')
+[[ "$selected" =~ ^[0-9]+$ ]] || exit 0
+
+dir="${dirs[$selected]:-}"
+[[ -n "$dir" ]] || exit 0
+
+setsid -f kitty --directory "$dir" --session "$SESSION"
