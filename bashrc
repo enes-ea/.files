@@ -20,7 +20,7 @@ export GPG_TTY=$(tty)
 export PATH="$HOME/.local/bin:$HOME/.local/share/cargo/bin:$HOME/.local/share/go/bin:$PATH"
 
 # ── Colors ─────────────────────────────────────────────────────
-export LS_COLORS="$(vivid generate tokyonight-night)"
+export LS_COLORS="$(vivid generate carbonfox)"
 export MANROFFOPT="-c"
 
 # ── Tools ──────────────────────────────────────────────────────

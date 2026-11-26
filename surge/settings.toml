@@ -22,7 +22,7 @@ log_retention_count = 5
 show_speed_graph = true
 skip_update_check = false
 theme = 2
-theme_path = '/home/enes/.config/surge/themes/tokyonight.toml'
+theme_path = '/home/enes/.config/surge/themes/carbonfox.toml'
 transparent_background = false
 warn_on_duplicate = true
 

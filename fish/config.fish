@@ -31,7 +31,10 @@ if status is-interactive
     set -gx EDITOR nvim
     set -g async_prompt_functions _pure_prompt_git
 
-    fish_config theme choose tokyonight_night
+    fish_config theme choose carbonfox
+
+    # fzf — carbonfox colors, same defaults as fzf.fish wrapper
+    set -gx FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=90% --preview-window=wrap --marker="*" --color=fg:#f2f4f8,bg:#161616,hl:#78a9ff,fg+:#f2f4f8,bg+:#2a2a2a,hl+:#8cb6ff,info:#6e6f70,prompt:#33b1ff,pointer:#ee5396,marker:#25be6a,spinner:#be95ff,header:#08bdba,border:#353535,label:#b6b8bb,query:#f2f4f8,separator:#353535,scrollbar:#525253,preview-bg:#0c0c0c,preview-border:#353535,preview-label:#b6b8bb'
 
     alias eza='eza --icons=always --color=always -h'
     alias l='eza -l --sort=type'

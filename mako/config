@@ -21,11 +21,11 @@ layer=overlay
 font=JetBrainsMono Nerd Font 12
 
 # Colors
-background-color=#1a1b26
-text-color=#c0caf5
-border-color=#7dcfff
-progress-color=over #292e42
+background-color=#161616
+text-color=#f2f4f8
+border-color=#33b1ff
+progress-color=over #252525
 
 [urgency=high]
-border-color=#ff9e64
+border-color=#3ddbd9
 default-timeout=0

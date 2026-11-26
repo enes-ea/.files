@@ -7,7 +7,7 @@
     useConfigOnly = true
 
 [include]
-    path = ~/.config/delta/tokyonight.gitconfig
+    path = ~/.config/delta/carbonfox.gitconfig
     path = ~/.files/gitconfig-local
 
 [core]
@@ -117,7 +117,7 @@
     navigate = true
     dark = true
     line-numbers = true
-    features = tokyonight-night
+    features = carbonfox
     side-by-side = true
     hyperlinks = true
     tabs = 2

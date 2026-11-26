@@ -1,0 +1,14 @@
+[delta "carbonfox"]
+  minus-style                   = syntax "#3a1f2c"
+  minus-non-emph-style          = syntax "#3a1f2c"
+  minus-emph-style              = syntax "#4d2135"
+  minus-empty-line-marker-style = syntax "#3a1f2c"
+  line-numbers-minus-style      = "#ca4780"
+  plus-style                    = syntax "#163a2a"
+  plus-non-emph-style           = syntax "#163a2a"
+  plus-emph-style               = syntax "#1c4a35"
+  plus-empty-line-marker-style  = syntax "#163a2a"
+  line-numbers-plus-style       = "#1fa25a"
+  line-numbers-zero-style       = "#353535"
+  # Should match the name of the bat theme
+  syntax-theme = carbonfox

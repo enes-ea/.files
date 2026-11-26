@@ -14,7 +14,7 @@ vim.pack.add({
     gh("saghen/blink.cmp"),
     gh("romus204/tree-sitter-manager.nvim"),
     gh("nvim-mini/mini.pairs"),
-    gh("folke/tokyonight.nvim"),
+    gh("EdenEast/nightfox.nvim"),
     gh("folke/snacks.nvim"),
     gh("stevearc/conform.nvim"),
     gh("lewis6991/gitsigns.nvim"),
@@ -26,25 +26,20 @@ vim.pack.add({
     gh("WhoIsSethDaniel/mason-tool-installer.nvim"),
 })
 
--- tokyonight
+-- nightfox
 
--- Tokyonight has no compile_path option; redirect its highlight cache.
-require("tokyonight.util").cache.file = function(key)
-    return vim.fn.stdpath("cache") .. "/tokyonight/" .. key .. ".json"
-end
-
-require("tokyonight").setup({
-    style = "night",
-    terminal_colors = true,
-    cache = true,
-    styles = {
-        comments = { italic = true },
-        keywords = { bold = true },
-        functions = { bold = true },
-        variables = {},
+require("nightfox").setup({
+    options = {
+        styles = {
+            comments = "italic",
+            keywords = "bold",
+            functions = "bold",
+            variables = "",
+        },
+        terminal_colors = true,
     },
 })
-vim.cmd.colorscheme("tokyonight")
+vim.cmd.colorscheme("carbonfox")
 
 require("mini.pairs").setup()
 require("nvim-web-devicons").setup({})

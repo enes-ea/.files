@@ -1,0 +1,124 @@
+colors:
+  # Carbonfox
+  background_color: '161616'
+  purple: "be95ff"
+  khaki: "08bdba"
+  pink: "ee5396"
+  cyan: "33b1ff"
+  green: "25be6a"
+  orange: "3ddbd9"
+
+  # Others
+  white: "f2f4f8"
+  black: "0c0c0c"
+  red: "ee5396"
+  gray: "b6b8bb"
+  dimgray: "6e6f70"
+  gold: "dbc074"
+  springgreen: "46c880"
+  darkgray: "252525"
+
+core:
+  normal_text: {}
+  regular_file: {}
+  reset_to_normal: {}
+
+  directory:
+    foreground: cyan
+
+  symlink:
+    foreground: purple
+
+  multi_hard_link: {}
+
+  fifo:
+    foreground: black
+    background: cyan
+
+  socket:
+    foreground: black
+    background: pink
+
+  door:
+    foreground: black
+    background: pink
+
+  block_device:
+    foreground: cyan
+    background: darkgray
+
+  character_device:
+    foreground: pink
+    background: darkgray
+
+  broken_symlink:
+    foreground: black
+    background: red
+
+  missing_symlink_target:
+    foreground: black
+    background: red
+
+  setuid: {}
+
+  setgid: {}
+
+  file_with_capability: {}
+
+  sticky_other_writable: {}
+
+  other_writable: {}
+
+  sticky: {}
+
+  executable_file:
+    foreground: green
+    font-style: bold
+
+text:
+  special:
+    foreground: black
+    background: khaki
+
+  todo:
+    foreground: pink
+    font-style: bold
+
+  licenses:
+    foreground: gray
+
+  configuration:
+    foreground: green
+
+  other:
+    foreground: orange
+
+markup:
+  foreground: orange
+
+programming:
+  source:
+    foreground: springgreen
+
+  tooling:
+    foreground: green
+
+    continuous-integration:
+      foreground: khaki
+
+media:
+  foreground: orange
+
+office:
+  foreground: cyan
+
+archives:
+  foreground: pink
+  font-style: underline
+
+executable:
+  foreground: green
+  font-style: bold
+
+unimportant:
+  foreground: dimgray

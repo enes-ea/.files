@@ -1,0 +1,31 @@
+# Carbonfox
+# source: https://github.com/EdenEast/nightfox.nvim
+
+[colors]
+name = "Carbonfox"
+
+# Night (Dark)
+[colors.primary]
+background = "#161616"
+foreground = "#f2f4f8"
+accent = "#be95ff"
+
+[colors.normal]
+black = "#0c0c0c"
+red = "#ee5396"
+green = "#25be6a"
+yellow = "#08bdba"
+blue = "#78a9ff"
+magenta = "#be95ff"
+cyan = "#33b1ff"
+white = "#b6b8bb"
+
+[colors.bright]
+black = "#353535"
+red = "#f16da6"
+green = "#46c880"
+yellow = "#2dc7c4"
+blue = "#8cb6ff"
+magenta = "#c8a5ff"
+cyan = "#52bdff"
+white = "#f2f4f8"
