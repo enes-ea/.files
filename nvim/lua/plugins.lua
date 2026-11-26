@@ -30,16 +30,37 @@ vim.pack.add({
 
 require("nightfox").setup({
     options = {
+        dim_inactive = true,
         styles = {
             comments = "italic",
             keywords = "bold",
             functions = "bold",
-            variables = "",
         },
         terminal_colors = true,
     },
 })
 vim.cmd.colorscheme("carbonfox")
+
+-- Rounded floats to match the launcher.
+vim.o.winborder = "rounded"
+
+-- Nightfox has no snacks module: link the groups snacks leaves generic.
+local function snacks_highlights()
+    for group, link in pairs({
+        SnacksPickerMatch = "Search",
+        SnacksPickerRule = "FloatBorder",
+        SnacksNotifierBorder = "FloatBorder",
+        SnacksNotifierTitle = "Title",
+        SnacksNotifierInfo = "DiagnosticInfo",
+        SnacksNotifierWarn = "DiagnosticWarn",
+        SnacksNotifierError = "DiagnosticError",
+    }) do
+        vim.api.nvim_set_hl(0, group, { link = link })
+    end
+end
+snacks_highlights()
+vim.api.nvim_create_autocmd("ColorScheme", { callback = snacks_highlights })
+
 
 require("mini.pairs").setup()
 require("nvim-web-devicons").setup({})
@@ -199,13 +220,18 @@ cmp.setup({
             enabled = true,
         },
         accept = { auto_brackets = { enabled = true } },
-        documentation = { auto_show = true, auto_show_delay_ms = 200 },
+        documentation = {
+            auto_show = true,
+            auto_show_delay_ms = 200,
+            window = { border = "none" },
+        },
         list = {
             selection = {
                 preselect = function(ctx) return not require("blink.cmp").snippet_active({ direction = 1 }) end,
             },
         },
         menu = {
+            border = "none",
             draw = {
                 components = {
                     kind_icon = {
