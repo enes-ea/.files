@@ -158,7 +158,7 @@ emojis=(
     "🧶 yarn"
 )
 
-selected=$(printf '%s\n' "${emojis[@]}" | rofi -dmenu -i -p 'Emoji')
+selected=$(printf '%s\n' "${emojis[@]}" | rofi -dmenu -i -p 'emoji' -theme-str 'prompt { text-color: #ff7eb6; }')
 [[ -z "$selected" ]] && exit 0
 emoji=$(echo "$selected" | awk '{print $1}')
 echo -n "$emoji" | wl-copy

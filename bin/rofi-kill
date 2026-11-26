@@ -1,6 +1,6 @@
 #!/bin/bash
 entries=$(ps -eo pid,user,comm --no-headers | awk '$2 != "root" && $2 != "nobody"' | sort -k1,1rn | head -500)
-selected=$(echo "$entries" | rofi -dmenu -i -p 'Kill')
+selected=$(echo "$entries" | rofi -dmenu -i -p 'kill' -theme-str 'prompt { text-color: #ee5396; }')
 [[ -z "$selected" ]] && exit 0
 pid=$(echo "$selected" | awk '{print $1}')
 name=$(echo "$selected" | awk '{print $NF}')

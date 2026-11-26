@@ -7,10 +7,10 @@ MD="$HOME/.files/keybinds/KEYBINDS.md"
 [ -f "$MD" ] || { notify-send "keybinds" "KEYBINDS.md not found"; exit 1; }
 
 # Build awk script with embedded emoji as shell vars, then pass via -v
-KITTY=$(printf '\U1F431')
-NEOVIM=$(printf '\U1F4DD')
-MANGO=$(printf '\U1F96D')
-FISH=$(printf '\U1F41F')
+KITTY=Kitty
+NEOVIM=Neovim
+MANGO=Mango
+FISH=Fish
 
 selected=$(
   gawk -F'|' -v kitty="$KITTY" -v neovim="$NEOVIM" -v mango="$MANGO" -v fish="$FISH" '
@@ -32,7 +32,7 @@ selected=$(
       if (shortcut ~ /^-+$|^(Shortcut|Command)$/) next
       if (sec9) {
         val = clean($3)
-        if (val ~ /[[:alnum:]]/) print mango " " shortcut "  \u2192  " val
+        if (val ~ /[[:alnum:]]/) print mango ": " shortcut "  \u2192  " val
       } else {
         for (i = 3; i <= 6; i++) {
           ico = (i==3 ? kitty : i==4 ? neovim : i==5 ? mango : fish)
@@ -51,7 +51,7 @@ selected=$(
       if (notes) desc = desc "  (" notes ")"
       print fish " " cmd "  \u2192  " desc
     }
-  ' "$MD" | rofi -dmenu -p "keybinds" -i -width 100 -no-custom
+  ' "$MD" | rofi -dmenu -p "keybinds" -theme-str 'prompt { text-color: #be95ff; }' -i -width 100 -no-custom
 )
 
 if [ -n "$selected" ]; then

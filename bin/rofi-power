@@ -1,9 +1,21 @@
 #!/bin/bash
-options="  Sleep\n  Reboot\n  Shutdown\n  Logout"
-selected=$(echo -e "$options" | rofi -dmenu -i -p 'Power')
-case "$selected" in
-    *Sleep) systemctl suspend ;;
-    *Reboot) systemctl reboot ;;
-    *Shutdown) systemctl poweroff ;;
-    *Logout) mmsg quit ;;
+labels=(Sleep Reboot Shutdown Logout)
+descs=(suspend restart "power off" "quit session")
+actions=(suspend reboot poweroff quit)
+
+lines=()
+for i in "${!labels[@]}"; do
+    lines+=("<b>${labels[i]}</b>     <span alpha=\"55%\">${descs[i]}</span>")
+done
+
+selected=$(printf '%s\n' "${lines[@]}" |
+    rofi -dmenu -i -markup-rows -format i -p 'power' \
+        -theme-str 'prompt { text-color: #ee5396; }')
+[[ "$selected" =~ ^[0-9]+$ ]] || exit 0
+
+case "${actions[$selected]}" in
+    suspend) systemctl suspend ;;
+    reboot) systemctl reboot ;;
+    poweroff) systemctl poweroff ;;
+    quit) mmsg quit ;;
 esac

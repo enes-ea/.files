@@ -11,7 +11,7 @@ case "${1:-}" in
 esac
 
 history=$(tail -n 50 "$HIST" 2>/dev/null | tac | awk '!seen[$0]++')
-query=$({ echo "Clear history"; [[ -n "$history" ]] && echo "$history"; } | rofi -dmenu -p 'Search')
+query=$({ echo "Clear history"; [[ -n "$history" ]] && echo "$history"; } | rofi -dmenu -p 'search' -theme-str 'prompt { text-color: #33b1ff; }')
 [[ -z "$query" ]] && exit 0
 
 if [[ "$query" == "Clear history" ]]; then

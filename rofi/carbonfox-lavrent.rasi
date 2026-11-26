@@ -1,0 +1,135 @@
+/**
+ * Carbonfox theme — floating launcher
+ * Palette: https://github.com/EdenEast/nightfox.nvim
+ */
+
+* {
+    bg0: #0c0c0c;
+    bg1: #161616;
+    bg2: #252525;
+    bg3: #353535;
+    bg4: #535353;
+    sel0: #2a2a2a;
+    sel1: #525253;
+
+    fg0: #f9fbff;
+    fg1: #f2f4f8;
+    fg2: #b6b8bb;
+    fg3: #7b7c7e;
+    comment: #6e6f70;
+
+    red: #ee5396;
+    green: #25be6a;
+    yellow: #08bdba;
+    blue: #78a9ff;
+    magenta: #be95ff;
+    cyan: #33b1ff;
+    white: #dfdfe0;
+    orange: #3ddbd9;
+    pink: #ff7eb6;
+
+    background-color: @bg1;
+    text-color: @fg1;
+}
+
+window {
+    width: 640;
+
+    location: center;
+    anchor: center;
+
+    padding: 10;
+    border: 1;
+    border-radius: 14;
+    border-color: @bg3;
+
+    background-color: @bg1;
+}
+
+mainbox {
+    spacing: 0;
+    children: [inputbar, message, listview];
+}
+
+inputbar {
+    padding: 10 12;
+    spacing: 8;
+    background-color: transparent;
+    border: 0 0 1 0;
+    border-color: @bg2;
+}
+
+prompt {
+    text-color: @blue;
+    margin: 0 4 0 0;
+}
+
+entry {
+    placeholder: "";
+}
+
+message {
+    padding: 6 2 0 2;
+    background-color: transparent;
+    text-color: @comment;
+}
+
+listview {
+    margin: 4 0 0 0;
+    padding: 4 0;
+    columns: 1;
+    lines: 10;
+    dynamic: true;
+    fixed-height: false;
+    spacing: 2;
+    scrollbar: false;
+    border: 0;
+    background-color: transparent;
+}
+
+element {
+    padding: 8 12;
+    spacing: 8;
+    border-radius: 8;
+    background-color: transparent;
+    text-color: @fg1;
+}
+
+element.selected.normal {
+    background-color: @sel0;
+    text-color: @fg1;
+    border: 0 0 0 2;
+    border-color: @blue;
+}
+
+element-text {
+    background-color: inherit;
+    text-color: inherit;
+}
+
+element.normal.active, element.alternate.active {
+    background-color: @bg2;
+    text-color: @orange;
+}
+
+element.selected.active {
+    background-color: @sel0;
+    text-color: @green;
+}
+
+element.normal.urgent, element.alternate.urgent {
+    background-color: #3a1f2c;
+    text-color: @red;
+}
+
+element.selected.urgent {
+    background-color: #4a1f33;
+    text-color: @pink;
+}
+
+error-message {
+    padding: 8 10;
+    border-radius: 8;
+    background-color: @red;
+    text-color: @bg1;
+}

@@ -13,7 +13,7 @@ if [ -d "$root/shared" ]; then
     done < <(find "$root/shared" -mindepth 1 -maxdepth 1 -type d ! -name '.*' | sort)
 fi
 
-selected=$(printf '%s\n' "${entries[@]}" | rofi -dmenu -p 'Folder')
+selected=$(printf '%s\n' "${entries[@]}" | rofi -dmenu -p 'folder' -theme-str 'prompt { text-color: #33b1ff; }')
 [ -z "$selected" ] && exit 0
 
 # Pick a video (flat, one level)

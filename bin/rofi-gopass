@@ -3,7 +3,7 @@
 entries=$(gopass ls --flat 2>/dev/null)
 [ -z "$entries" ] && exit 1
 
-entry=$(echo "$entries" | rofi -dmenu -p "gopass" -i -fuzzy)
+entry=$(echo "$entries" | rofi -dmenu -p "gopass" -i -fuzzy -theme-str 'prompt { text-color: #be95ff; }')
 [ -z "$entry" ] && exit 1
 
 gopass show -o "$entry" | tr -d '\n' | wl-copy

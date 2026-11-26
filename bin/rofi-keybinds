@@ -49,7 +49,7 @@ selected=$(
       if (notes) desc = desc "  (" notes ")"
       print "Fish: " cmd "  \u2192  " desc
     }
-  ' "$MD" | sort -k1,1 -s | rofi -dmenu -p "Keybinds" -i -width 100 -no-custom
+  ' "$MD" | sort -k1,1 -s | rofi -dmenu -p "keybinds" -i -width 100 -no-custom -theme-str 'prompt { text-color: #be95ff; }'
 )
 
 if [ -n "$selected" ]; then
